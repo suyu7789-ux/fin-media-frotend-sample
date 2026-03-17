@@ -2,97 +2,110 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>发布文章 - 创作者中心 - FIN-MEDIA</title>
+    <title>创作中心 - FIN-MEDIA</title>
     <style>
         :root { --bg-dark: #0B101E; --bg-card: #151B2E; --bg-hover: #1E293B; --text-main: #F8FAFC; --text-muted: #94A3B8; --accent-gold: #F59E0B; --border-color: #1E293B; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
-        
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
-        .logo-area h1 { color: var(--accent-gold); font-size: 24px; }
-        nav ul { display: flex; gap: 25px; list-style: none; font-weight: bold; }
-        .header-actions { display: flex; align-items: center; gap: 15px; }
-        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
-
         .container { max-width: 1400px; margin: 30px auto; padding: 0 5%; display: flex; gap: 30px; }
-        .editor-main { flex: 1; background: var(--bg-card); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); }
-        .editor-side { width: 350px; }
         
-        .input-title { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color); color: var(--text-main); font-size: 28px; font-weight: bold; padding: 10px 0; margin-bottom: 20px; outline: none; }
+        /* 核心编辑器 */
+        .editor-main { flex: 1; background: var(--bg-card); padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .type-selector { display: flex; gap: 15px; margin-bottom: 30px; }
+        .type-btn { padding: 10px 25px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
+        .type-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245, 158, 11, 0.05); }
+
+        .input-title { width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--border-color); color: var(--text-main); font-size: 32px; font-weight: bold; padding: 15px 0; margin-bottom: 25px; outline: none; transition: 0.3s; }
         .input-title:focus { border-bottom-color: var(--accent-gold); }
+
+        .toolbar { background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 25px; display: flex; gap: 20px; border: 1px solid var(--border-color); position: sticky; top: 80px; z-index: 10; }
+        .toolbar-group { display: flex; gap: 12px; border-right: 1px solid var(--border-color); padding-right: 15px; }
+        .toolbar-group:last-child { border: none; }
+        .tool-btn { color: var(--text-muted); cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .tool-btn:hover { color: var(--accent-gold); }
         
-        .toolbar { background: var(--bg-dark); padding: 10px; border-radius: 4px; margin-bottom: 20px; display: flex; gap: 15px; border: 1px solid var(--border-color); }
-        .toolbar-btn { color: var(--text-muted); cursor: pointer; font-size: 14px; }
-        .toolbar-btn:hover { color: var(--accent-gold); }
+        .editable-area { min-height: 600px; color: #E2E8F0; font-size: 18px; outline: none; line-height: 1.8; }
+        .editable-area:empty:before { content: attr(placeholder); color: #475569; }
+
+        /* 侧边栏 */
+        .editor-side { width: 350px; }
+        .side-card { background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
+        .side-title { color: var(--accent-gold); font-weight: bold; margin-bottom: 20px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+        .form-label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+        .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; padding: 12px; font-size: 14px; margin-bottom: 20px; outline: none; }
         
-        .editable-area { min-height: 500px; color: #E2E8F0; font-size: 17px; outline: none; }
-        
-        .side-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 20px; }
-        .side-title { color: var(--accent-gold); font-weight: bold; margin-bottom: 15px; font-size: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
-        
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
-        .form-control { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 4px; color: #fff; padding: 8px; font-size: 13px; }
-        
-        .btn-pub { width: 100%; background: var(--accent-gold); color: #000; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .btn-draft { width: 100%; background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+        .btn-pub { width: 100%; background: var(--accent-gold); color: #000; border: none; padding: 16px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .btn-pub:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3); }
     </style>
 </head>
 <script src="common.js"></script>
 <body>
     <header id="global-header"></header>
-
     <div class="container">
         <div class="editor-main">
-            <input type="text" class="input-title" placeholder="输入文章标题...">
-            <div class="toolbar">
-                <span class="toolbar-btn"><b>B</b></span>
-                <span class="toolbar-btn"><i>I</i></span>
-                <span class="toolbar-btn">🔗 链接</span>
-                <span class="toolbar-btn">🖼️ 图片</span>
-                <span class="toolbar-btn">📊 插入行情图</span>
+            <div class="type-selector">
+                <div class="type-btn active" onclick="switchMode('article')">📝 深度文章</div>
+                <div class="type-btn" onclick="switchMode('flash')">⚡ 7x24 快讯</div>
             </div>
-            <div class="editable-area" contenteditable="true" placeholder="开始撰写您的金融分析..."></div>
+
+            <input type="text" id="editorTitle" class="input-title" placeholder="在此输入引人注目的标题...">
+            
+            <div class="toolbar">
+                <div class="toolbar-group">
+                    <span class="tool-btn">H1</span><span class="tool-btn">H2</span><span class="tool-btn"><b>B</b></span><span class="tool-btn"><i>I</i></span>
+                </div>
+                <div class="toolbar-group">
+                    <span class="tool-btn">🖼️ 图片</span><span class="tool-btn">📽️ 视频</span><span class="tool-btn">📊 K线图</span><span class="tool-btn">🔗 链接</span>
+                </div>
+                <div class="toolbar-group">
+                    <span class="tool-btn">📑 引用</span><span class="tool-btn">🔢 代码</span><span class="tool-btn">✅ 预览</span>
+                </div>
+            </div>
+
+            <div id="editorContent" class="editable-area" contenteditable="true" placeholder="开始您的专业分析与市场洞察..."></div>
         </div>
 
         <div class="editor-side">
             <div class="side-card">
-                <div class="side-title">发布设置</div>
-                <div class="form-group">
-                    <label>选择分类</label>
-                    <select class="form-control"><option>宏观经济</option><option>股市动态</option><option>加密货币</option></select>
-                </div>
-                <div class="form-group">
-                    <label>关联标的 (代码/名称)</label>
-                    <input type="text" class="form-control" placeholder="如：2330, NVDA">
-                </div>
-                <div class="form-group">
-                    <label>文章标签</label>
-                    <input type="text" class="form-control" placeholder="用逗号分隔">
-                </div>
+                <div class="side-title">📌 发布设置</div>
+                <label class="form-label">发布板块</label>
+                <select class="form-input"><option>宏观经济</option><option>股市动态</option><option>加密货币</option></select>
+                <label class="form-label">关联代码 (Ticker)</label>
+                <input type="text" class="form-input" placeholder="如: NVDA, 2330">
+                <label class="form-label">标签 (用逗号隔开)</label>
+                <input type="text" class="form-input" placeholder="降息, 半导体, AI">
             </div>
-
+            
             <div class="side-card">
-                <div class="side-title">商业化</div>
-                <div class="form-group" style="display:flex; align-items:center; gap:10px;">
-                    <input type="checkbox" id="pay-read"> <label for="pay-read" style="margin:0;">开启付费阅读</label>
+                <div class="side-title">💰 商业化设置</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <span style="font-size:14px;">开启付费阅读</span>
+                    <input type="checkbox" id="isPay">
                 </div>
-                <div class="form-group">
-                    <label>价格 (积分/虚拟币)</label>
-                    <input type="number" class="form-control" value="0">
-                </div>
+                <label class="form-label">设置价格 (Fin-Coin)</label>
+                <input type="number" class="form-input" value="0">
             </div>
 
-            <button class="btn-pub">立即发布</button>
-            <button class="btn-draft">存为草稿</button>
+            <button class="btn-pub">立即发布内容</button>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:15px;">保存草稿 (14:22:05)</p>
         </div>
     </div>
 
     <script>
-        document.getElementById('globalSearchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') window.location.href = 'search.html';
-        });
+        function switchMode(mode) {
+            const btns = document.querySelectorAll('.type-btn');
+            const titleInput = document.getElementById('editorTitle');
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if(mode === 'flash') {
+                titleInput.style.display = 'none';
+                document.getElementById('editorContent').setAttribute('placeholder', '输入快讯内容（支持股票代码高亮）...');
+            } else {
+                titleInput.style.display = 'block';
+                document.getElementById('editorContent').setAttribute('placeholder', '开始您的专业分析与市场洞察...');
+            }
+        }
     </script>
 </body>
 </html>

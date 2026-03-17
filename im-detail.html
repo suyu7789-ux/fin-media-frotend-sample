@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>私信详情 - FIN-MEDIA</title>
+    <style>
+        :root { --bg-dark: #0B101E; --bg-card: #151B2E; --bg-hover: #1E293B; --text-main: #F8FAFC; --text-muted: #94A3B8; --accent-gold: #F59E0B; --border-color: #1E293B; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); }
+        .container { max-width: 900px; margin: 20px auto; height: 80vh; display: flex; flex-direction: column; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; }
+        .chat-header { padding: 15px 25px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; }
+        .chat-body { flex: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+        .bubble { max-width: 70%; padding: 12px 18px; border-radius: 12px; font-size: 15px; position: relative; }
+        .bubble.other { background: var(--bg-hover); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .bubble.me { background: var(--accent-gold); color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .chat-footer { padding: 20px; border-top: 1px solid var(--border-color); display: flex; gap: 15px; }
+        input { flex: 1; background: var(--bg-dark); border: 1px solid var(--border-color); padding: 12px; border-radius: 4px; color: #fff; outline: none; }
+        .btn-send { background: var(--accent-gold); color: #000; border: none; padding: 0 25px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<script src="common.js"></script>
+<body>
+    <header id="global-header"></header>
+    <div class="container">
+        <div class="chat-header">
+            <a href="user.html" style="color:var(--text-muted);">⬅</a>
+            <div style="width:40px; height:40px; background:#444; border-radius:50%;"></div>
+            <strong>Alpha交易员</strong>
+        </div>
+        <div class="chat-body">
+            <div class="bubble other">你好，看了你关于台积电的分析，很有深度。</div>
+            <div class="bubble me">感谢认可！我主要关注先进制程的产能利用率。</div>
+            <div class="bubble other">后续是否有兴趣合作一份关于AI芯片组的专题研报？</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" placeholder="输入消息内容...">
+            <button class="btn-send">发送</button>
+        </div>
+    </div>
+</body>
+</html>
