@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宏观经济 - FIN-MEDIA</title>
+    <style>
+        :root { --bg-dark: #0B101E; --bg-card: #151B2E; --border-color: #1E293B; --text-main: #F8FAFC; --text-muted: #94A3B8; --accent-gold: #F59E0B; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--accent-gold); }
+        ul { list-style: none; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-area h1 { color: var(--accent-gold); font-size: 24px; letter-spacing: 1px; }
+        .logo-area p { font-size: 12px; color: var(--text-muted); }
+        nav ul { display: flex; gap: 25px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
+        .btn-publish { background-color: var(--accent-gold); color: #000; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+
+        .category-header { background: var(--bg-card); padding: 40px 5%; border-bottom: 1px solid var(--border-color); margin-bottom: 30px; text-align: center; }
+        .category-header h1 { font-size: 28px; color: var(--accent-gold); margin-bottom: 10px; }
+        .filter-tags { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+        .filter-tags span { padding: 4px 12px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 15px; font-size: 13px; cursor: pointer; color: var(--text-muted); }
+        .filter-tags span.active { border-color: var(--accent-gold); color: var(--text-main); }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
+        .article-card { background: var(--bg-card); padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border-color); transition: 0.3s; }
+        .article-card:hover { border-color: var(--accent-gold); }
+        .article-title { font-size: 20px; margin-bottom: 10px; }
+        .article-summary { color: var(--text-muted); font-size: 15px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <a href="index.html"><h1>FIN-MEDIA</h1></a>
+            <p>洞悉市场，发现价值</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="category.html" style="color:var(--accent-gold);">宏观经济</a></li>
+                <li><a href="stock.html">股市动态</a></li>
+                <li><a href="authors.html">专栏作者</a></li>
+                <li><a href="flash.html">7x24快讯</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <input type="text" class="search-box" placeholder="搜索代码、文章、作者..." onkeydown="if(event.keyCode==13) window.location.href='search.html'">
+            <a href="login.html" class="btn-publish" style="color:#000;">✎ 发布文章</a>
+            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%; cursor: pointer;"></div></a>
+        </div>
+    </header>
+
+    <div class="category-header">
+        <h1>宏观经济 (Macroeconomics)</h1>
+        <p style="color: var(--text-muted);">关注全球央行动态、通胀数据与大类资产周期规律。</p>
+        <div class="filter-tags">
+            <span class="active">全部</span><span>美联储 (Fed)</span><span>非农/CPI</span><span>地缘政治</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="article-card">
+            <h3 class="article-title"><a href="article.html">美联储降息路径重估：流动性拐点与资产配置策略</a></h3>
+            <p class="article-summary">市场对美联储在年内的货币政策路径预期正在发生深刻变化。华尔街的定价模型显示，原本激进的降息预期正在被现实修正...</p>
+            <div style="font-size: 12px; color: var(--text-muted);">宏观研究局 · 2026-03-17</div>
+        </div>
+        <div class="article-card">
+            <h3 class="article-title"><a href="article.html">日本央行历史性转向：终结负利率政策对全球资金流向的深远影响</a></h3>
+            <p class="article-summary">日本央行（BOJ）正式宣布退出维持多年的负利率框架。此举将引发庞大的资金回流，对美债和新兴市场资产形成抽水效应。</p>
+            <div style="font-size: 12px; color: var(--text-muted);">全球视野 · 2026-03-15</div>
+        </div>
+    </div>
+</body>
+</html>

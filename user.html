@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - FIN-MEDIA</title>
+    <style>
+        :root { --bg-dark: #0B101E; --bg-card: #151B2E; --bg-hover: #1E293B; --text-main: #F8FAFC; --text-muted: #94A3B8; --accent-gold: #F59E0B; --border-color: #1E293B; --up-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6;}
+        a { text-decoration: none; color: inherit; transition: 0.3s;}
+        a:hover { color: var(--accent-gold); }
+        ul { list-style: none; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-area h1 { color: var(--accent-gold); font-size: 24px; letter-spacing: 1px; }
+        .logo-area p { font-size: 12px; color: var(--text-muted); }
+        nav ul { display: flex; gap: 25px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
+        .btn-publish { background-color: var(--accent-gold); color: #000; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+
+        .container { display: flex; gap: 20px; padding: 30px 5%; max-width: 1400px; margin: 0 auto; }
+        .card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .user-sidebar { flex: 0 0 250px; padding: 0; overflow: hidden; height: fit-content; }
+        .user-main { flex: 1; }
+        .user-profile-brief { text-align: center; padding: 30px 20px; }
+        .user-profile-brief .avatar { width: 80px; height: 80px; background: #cbd5e1; border-radius: 50%; margin: 0 auto 15px; }
+        .user-menu { margin-top: 20px; }
+        .user-menu li { padding: 15px 20px; border-bottom: 1px solid var(--border-color); cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+        .user-menu li:hover, .user-menu li.active { background: var(--bg-hover); color: var(--accent-gold); border-left: 3px solid var(--accent-gold); }
+        .saved-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px dashed var(--border-color); }
+        .btn-remove { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+        .btn-remove:hover { border-color: var(--up-red); color: var(--up-red); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <a href="index.html"><h1>FIN-MEDIA</h1></a>
+            <p>洞悉市场，发现价值</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="category.html">宏观经济</a></li>
+                <li><a href="stock.html">股市动态</a></li>
+                <li><a href="authors.html">专栏作者</a></li>
+                <li><a href="flash.html">7x24快讯</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <input type="text" class="search-box" placeholder="搜索代码、文章、作者..." onkeydown="if(event.keyCode==13) window.location.href='search.html'">
+            <a href="login.html" class="btn-publish" style="color:#000;">✎ 发布文章</a>
+            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%; cursor: pointer; border: 2px solid var(--accent-gold);"></div></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card user-sidebar">
+            <div class="user-profile-brief">
+                <div class="avatar"></div>
+                <h3>投资小浪花</h3>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">注册天数：142 天</p>
+            </div>
+            <ul class="user-menu">
+                <li class="active">⭐ 我的收藏</li>
+                <li>👥 我的关注 (12)</li>
+                <li>💰 钱包与订阅</li>
+                <li>⚙️ 账号设置</li>
+            </ul>
+        </div>
+        <div class="card user-main">
+            <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;">我的收藏 (2篇)</h3>
+            <div class="saved-item">
+                <div>
+                    <a href="article.html" style="font-size: 16px; margin-bottom: 5px; display:block;">【干货】普通人如何利用ETF构建穿越牛熊的防御性资产组合</a>
+                    <div style="font-size: 12px; color: var(--text-muted);">理财科普君 · 收藏于 2026-03-10</div>
+                </div>
+                <button class="btn-remove">取消收藏</button>
+            </div>
+            <div class="saved-item">
+                <div>
+                    <a href="article.html" style="font-size: 16px; margin-bottom: 5px; display:block;">英伟达(NVDA)财报后暴跌，AI泡沫破裂还是黄金坑？</a>
+                    <div style="font-size: 12px; color: var(--text-muted);">硅谷投资客 · 收藏于 2026-01-15</div>
+                </div>
+                <button class="btn-remove">取消收藏</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7x24 快讯大厅 - FIN-MEDIA</title>
+    <style>
+        :root {
+            --bg-dark: #0B101E; --bg-card: #151B2E; --bg-hover: #1E293B;
+            --text-main: #F8FAFC; --text-muted: #94A3B8;
+            --accent-gold: #F59E0B; --up-red: #EF4444; --down-green: #10B981; --border-color: #1E293B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--accent-gold); }
+        ul { list-style: none; }
+
+        /* --- 修复：全局统一的导航栏样式 --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-area h1 { color: var(--accent-gold); font-size: 24px; letter-spacing: 1px; }
+        .logo-area p { font-size: 12px; color: var(--text-muted); }
+        nav ul { display: flex; gap: 25px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
+        .btn-publish { background-color: var(--accent-gold); color: #000; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .btn-publish:hover { color: #000; opacity: 0.9; }
+
+        /* --- 主体内容区域 --- */
+        .container { display: flex; gap: 20px; padding: 30px 5%; max-width: 1400px; margin: 0 auto; }
+        .col-main { flex: 0 0 70%; }
+        .col-side { flex: 1; }
+        .card { background: var(--bg-card); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        .widget-title { color: var(--accent-gold); margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; font-size: 16px; font-weight: bold; }
+
+        .hub-filters { display: flex; gap: 10px; margin-bottom: 25px; }
+        .hub-filters span { padding: 6px 15px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .hub-filters span.active { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); font-weight: bold; }
+        
+        .timeline { border-left: 2px solid var(--border-color); margin-left: 10px; padding-left: 20px; }
+        .timeline-item { position: relative; margin-bottom: 25px; }
+        .timeline-dot { position: absolute; left: -26px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); border: 2px solid var(--bg-dark); }
+        .timeline-item.important .timeline-dot { background: var(--up-red); box-shadow: 0 0 8px var(--up-red); }
+        .timeline-time { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
+        .timeline-content { background: var(--bg-card); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .timeline-item.important .timeline-content { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.05); }
+
+        .calendar-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+        .calendar-table th { color: var(--text-muted); padding: 10px 5px; border-bottom: 1px solid var(--border-color); }
+        .calendar-table td { padding: 10px 5px; border-bottom: 1px solid var(--bg-hover); }
+        .cal-country { display: inline-block; width: 20px; height: 14px; background: #cbd5e1; margin-right: 5px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <a href="index.html"><h1>FIN-MEDIA</h1></a>
+            <p>洞悉市场，发现价值</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="category.html">宏观经济</a></li>
+                <li><a href="category.html">股市动态</a></li>
+                <li><a href="category.html">加密货币</a></li>
+                <li><a href="flash.html" style="color:var(--accent-gold);">7x24快讯</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <input type="text" class="search-box" placeholder="搜索代码、文章、作者..." onkeydown="if(event.keyCode==13) window.location.href='search.html'">
+            <a href="login.html" class="btn-publish" style="color:#000;">✎ 发布文章</a>
+            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%; cursor: pointer;"></div></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="col-main">
+            <div class="hub-filters">
+                <span class="active">全部快讯</span>
+                <span>美联储动态</span>
+                <span>台股/A股</span>
+                <span>加密货币 (Crypto)</span>
+                <span>重磅财报</span>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item important">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-time">刚刚 · 重大突发</div>
+                    <div class="timeline-content">
+                        <strong style="color: var(--up-red); font-size: 16px;">美国2月未季调CPI年率录得 3.1%，高于市场预期的 2.9%。</strong>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-top: 5px;">数据公布后，美元指数DXY短线拉升30点，现货黄金短线下挫12美元。互换市场降低了对美联储今年降息的押注。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-time">10分钟前</div>
+                    <div class="timeline-content">
+                        <strong>台积电 (2330.TW) 盘中拉升，涨幅扩大至 2%。</strong>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-top: 5px;">消息面上，有供应链人士透露，苹果包下了台积电3nm制程的绝大部分产能。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-time">45分钟前</div>
+                    <div class="timeline-content">
+                        <strong>比特币 (BTC) 突破 75,000 美元，创下历史新高。</strong>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-top: 5px;">受现货ETF资金持续净流入的推动，加密货币市场整体大涨，以太坊 (ETH) 站上 4000 美元关口。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-side">
+            <div class="card">
+                <h3 class="widget-title">📅 财经日历 (2026年3月17日)</h3>
+                <table class="calendar-table">
+                    <tr><th>时间</th><th>事件 / 数据</th><th>预期</th><th>前值</th></tr>
+                    <tr><td>15:00</td><td><span class="cal-country" style="background:#3b82f6;"></span>英国2月CPI年率</td><td>4.0%</td><td>4.0%</td></tr>
+                    <tr style="background: rgba(245, 158, 11, 0.1);"><td>20:30</td><td><span class="cal-country" style="background:#ef4444;"></span>美国2月零售销售月率</td><td>0.8%</td><td>-0.8%</td></tr>
+                    <tr><td>22:30</td><td><span class="cal-country" style="background:#ef4444;"></span>美国EIA原油库存</td><td>--</td><td>136.7w</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3 class="widget-title">📈 焦点资产监控</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px;">
+                    <div><div style="font-weight: bold;">美元指数 (DXY)</div><div style="font-size: 12px; color: var(--text-muted);">影响全球流动性</div></div>
+                    <div style="color: var(--up-red); font-weight: bold;">103.85 ▲</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div><div style="font-weight: bold;">恐慌指数 (VIX)</div><div style="font-size: 12px; color: var(--text-muted);">市场风险偏好</div></div>
+                    <div style="color: var(--down-green); font-weight: bold;">13.40 ▼</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

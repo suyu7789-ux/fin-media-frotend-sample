@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - FIN-MEDIA 金融自媒体</title>
+    <style>
+        :root {
+            --bg-dark: #0B101E; --bg-card: #151B2E;
+            --text-main: #F8FAFC; --text-muted: #94A3B8;
+            --accent-gold: #F59E0B; --up-red: #EF4444; --down-green: #10B981;
+            --border-color: #1E293B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        a:hover { color: var(--accent-gold); }
+
+        /* --- 完整的顶部导航栏 --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-area h1 { color: var(--accent-gold); font-size: 24px; letter-spacing: 1px; }
+        .logo-area p { font-size: 12px; color: var(--text-muted); }
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a { font-size: 16px; font-weight: bold; }
+        nav a.active { color: var(--accent-gold); }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
+        .btn-publish { background-color: var(--accent-gold); color: #000; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .btn-publish:hover { color: #000; opacity: 0.9; }
+
+        /* --- 行情跑马灯 --- */
+        .ticker-bar { background-color: #000; padding: 10px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--border-color); }
+        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker-item { display: inline-block; margin: 0 20px; font-size: 14px; }
+        .ticker-name { font-weight: bold; margin-right: 8px; color: #ccc; }
+        .up { color: var(--up-red); } .down { color: var(--down-green); }
+
+        /* --- 页面公共约束 --- */
+        .container { display: flex; gap: 20px; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
+        .col-main { flex: 0 0 65%; }
+        .col-side { flex: 1; }
+
+        /* --- 首屏核心区 --- */
+        .hero-main { background-color: var(--bg-card); border-radius: 8px; overflow: hidden; position: relative; height: 400px; }
+        .hero-img-placeholder { width: 100%; height: 100%; background: linear-gradient(45deg, #1e293b, #334155); display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
+        .hero-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
+        .hero-content h2 { font-size: 28px; margin-bottom: 10px; cursor: pointer; }
+        .hero-meta { font-size: 14px; color: var(--text-muted); }
+        
+        .flash-news { background-color: var(--bg-card); border-radius: 8px; padding: 20px; height: 400px; overflow-y: auto; }
+        .widget-title { color: var(--accent-gold); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; font-size: 16px; }
+        .news-item { display: flex; margin-bottom: 15px; }
+        .news-time { color: var(--accent-gold); font-weight: bold; font-size: 13px; width: 50px; flex-shrink: 0; }
+        .news-text { font-size: 14px; color: var(--text-muted); padding-left: 10px; border-left: 2px solid var(--border-color); cursor: pointer; }
+        .news-text:hover { color: var(--text-main); }
+        .flash-news::-webkit-scrollbar { width: 4px; } .flash-news::-webkit-scrollbar-thumb { background: var(--border-color); }
+
+        /* --- 文章瀑布流 --- */
+        .feed-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border-color); margin: 20px 0; padding-bottom: 10px; }
+        .feed-tabs a { color: var(--text-muted); font-size: 16px; padding-bottom: 10px; margin-bottom: -11px; }
+        .feed-tabs a.active { color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold); font-weight: bold; }
+
+        .article-card { background: var(--bg-card); padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid transparent; transition: border 0.3s; }
+        .article-card:hover { border-color: var(--accent-gold); }
+        .article-title { font-size: 20px; margin-bottom: 10px; cursor: pointer; color: var(--text-main); }
+        .article-summary { color: var(--text-muted); font-size: 14px; margin-bottom: 15px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .article-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); }
+        .author-info { display: flex; align-items: center; gap: 8px; }
+        .author-avatar { width: 28px; height: 28px; background: #334155; border-radius: 50%; display: inline-block; }
+        .interaction span { margin-left: 15px; cursor: pointer; }
+        .interaction span:hover { color: var(--text-main); }
+
+        /* --- 侧边栏 --- */
+        .widget { background: var(--bg-card); padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .creator-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .creator-left { display: flex; align-items: center; gap: 10px; }
+        .creator-rank { font-weight: bold; font-size: 14px; width: 15px; text-align: center; }
+        .creator-item:nth-child(1) .creator-rank { color: #EF4444; } 
+        .creator-item:nth-child(2) .creator-rank { color: #F59E0B; } 
+        .creator-item:nth-child(3) .creator-rank { color: #10B981; } 
+        .creator-name { font-size: 14px; color: var(--text-main); }
+        .creator-tag { font-size: 12px; color: var(--text-muted); }
+        .btn-follow { background: transparent; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 4px 12px; border-radius: 15px; cursor: pointer; font-size: 12px; transition: 0.2s; }
+        .btn-follow:hover { background: var(--accent-gold); color: #000; }
+
+        .heatmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .heat-block { padding: 15px 10px; text-align: center; border-radius: 4px; font-size: 14px; font-weight: bold; color: #fff; cursor: pointer; }
+        .heat-up { background-color: rgba(239, 68, 68, 0.8); }
+        .heat-up-light { background-color: rgba(239, 68, 68, 0.5); }
+        .heat-down { background-color: rgba(16, 185, 129, 0.8); }
+        
+        .tags-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: var(--bg-dark); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 15px; font-size: 12px; color: var(--text-muted); cursor: pointer; transition: 0.2s; display: inline-block; }
+        .tag:hover { border-color: var(--accent-gold); color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <a href="index.html" style="color:var(--accent-gold);"><h1>FIN-MEDIA</h1></a>
+            <p>洞悉市场，发现价值</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="category.html">宏观经济</a></li>
+                <li><a href="stock.html">股市动态</a></li>
+                <li><a href="authors.html">专栏作者</a></li>
+                <li><a href="flash.html">7x24快讯</a></li>
+            </ul>
+        </nav>
+<div class="header-actions">
+            <input type="text" class="search-box" placeholder="搜索代码、文章、作者..." onkeydown="if(event.keyCode==13) window.location.href='search.html'">
+            <a href="login.html" class="btn-publish" style="color:#000;">✎ 发布文章</a>
+            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%; cursor: pointer;"></div></a>
+        </div>
+    </header>
+
+    <div class="ticker-bar">
+        <div class="ticker-content">
+            <div class="ticker-item"><span class="ticker-name">台股加权</span><span class="up">19,932.20 ▲ +112.37 (+0.57%)</span></div>
+            <div class="ticker-item"><span class="ticker-name">标普500</span><span class="up">5,150.48 ▲ +25.12 (+0.49%)</span></div>
+            <div class="ticker-item"><span class="ticker-name">纳斯达克</span><span class="down">16,085.11 ▼ -34.02 (-0.21%)</span></div>
+            <div class="ticker-item"><span class="ticker-name">黄金/美元</span><span class="up">2,165.30 ▲ +10.50 (+0.48%)</span></div>
+            <div class="ticker-item"><span class="ticker-name">BTC/USDT</span><span class="up">72,150.00 ▲ +1250.00 (+1.76%)</span></div>
+            <div class="ticker-item"><span class="ticker-name">原油 WTI</span><span class="down">81.20 ▼ -0.85 (-1.04%)</span></div>
+        </div>
+    </div>
+
+    <section class="container">
+        <div class="col-main hero-main">
+            <div class="hero-img-placeholder">[ 高清金融新闻大图占位 ]</div>
+            <div class="hero-content">
+                <a href="article.html">
+                    <h2>美联储利率决议前瞻：市场押注年内降息节奏生变？通胀数据成关键指引</h2>
+                </a>
+                <div class="hero-meta">作者：<a href="creator.html">宏观研究局</a> · 1小时前 · 1.2w 阅读</div>
+            </div>
+        </div>
+        <div class="col-side flash-news">
+            <a href="flash.html"><h3 class="widget-title">⚡ 24小时快讯 (点击进入大厅)</h3></a>
+            <div class="news-item"><div class="news-time">10:45</div><a href="flash.html" class="news-text">台积电宣布新一代先进制程产能规划，预计下半年量产。</a></div>
+            <div class="news-item"><div class="news-time">10:30</div><a href="flash.html" class="news-text">外资今日大幅净买入金融股与AI概念股，单日净流入超百亿。</a></div>
+            <div class="news-item"><div class="news-time">09:15</div><a href="flash.html" class="news-text">比特币突破历史新高，突破72,000美元关口，市场情绪极度贪婪。</a></div>
+            <div class="news-item"><div class="news-time">08:00</div><a href="flash.html" class="news-text">隔夜美股三大指数涨跌不一，科技股承压，能源股领涨。</a></div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="col-main">
+            <div class="feed-tabs">
+                <a href="#" class="active">最新推荐</a>
+                <a href="category.html">深度研报</a>
+                <a href="stock.html">大V观点</a>
+            </div>
+
+            <article class="article-card">
+                <a href="article.html"><h3 class="article-title">英伟达(NVDA)财报后暴跌，AI泡沫破裂还是黄金坑？</h3></a>
+                <p class="article-summary">市场对AI算力的预期是否透支？本文将从资本支出周期、各大云厂商(CSP)的财报指引，以及H200芯片的供应链交付情况，深度拆解英伟达当前的估值逻辑与风险收益比。</p>
+                <div class="article-meta">
+                    <div class="author-info">
+                        <a href="creator.html" style="display:flex; align-items:center; gap:8px;">
+                            <span class="author-avatar"></span>
+                            <span>硅谷投资客</span>
+                        </a>
+                        <span>· 2小时前</span>
+                    </div>
+                    <div class="interaction">
+                        <span>👁 8,532</span><span>💬 124</span><span>★ 收藏</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <a href="article.html"><h3 class="article-title">【干货】普通人如何利用ETF构建穿越牛熊的防御性资产组合</h3></a>
+                <p class="article-summary">在宏观经济不确定性增加的背景下，重仓单一股票的风险极高。通过宽基ETF搭配黄金、美债ETF，利用资产间的低相关性，可以有效降低最大回撤。附实盘配置比例参考。</p>
+                <div class="article-meta">
+                    <div class="author-info">
+                        <a href="creator.html" style="display:flex; align-items:center; gap:8px;">
+                            <span class="author-avatar"></span>
+                            <span>理财科普君</span>
+                        </a>
+                        <span>· 4小时前</span>
+                    </div>
+                    <div class="interaction">
+                        <span>👁 1.1w</span><span>💬 356</span><span>★ 收藏</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-side">
+            <div class="widget">
+                <h3 class="widget-title">🔥 影响力创作者 Top 5</h3>
+                <div class="creator-item">
+                    <div class="creator-left">
+                        <div class="creator-rank">1</div>
+                        <a href="creator.html" style="display:flex; align-items:center; gap:10px;">
+                            <div class="author-avatar"></div>
+                            <div><div class="creator-name">宏观研究局</div><div class="creator-tag">胜率 78% · 宏观分析</div></div>
+                        </a>
+                    </div>
+                    <a href="login.html"><button class="btn-follow">+ 关注</button></a>
+                </div>
+                <div class="creator-item">
+                    <div class="creator-left">
+                        <div class="creator-rank">2</div>
+                        <a href="creator.html" style="display:flex; align-items:center; gap:10px;">
+                            <div class="author-avatar"></div>
+                            <div><div class="creator-name">硅谷投资客</div><div class="creator-tag">年化 25% · 美股科技</div></div>
+                        </a>
+                    </div>
+                    <a href="login.html"><button class="btn-follow">+ 关注</button></a>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">📊 市场情绪热力图</h3>
+                <div class="heatmap-grid">
+                    <div class="heat-block heat-up">半导体<br>+2.4%</div>
+                    <div class="heat-block heat-up-light">金融<br>+0.8%</div>
+                    <div class="heat-block heat-down">新能源<br>-1.5%</div>
+                    <div class="heat-block heat-down">医药<br>-0.6%</div>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">🏷️ 热门话题</h3>
+                <div class="tags-cloud">
+                    <a href="category.html" class="tag"># 降息预期</a>
+                    <a href="category.html" class="tag"># AI概念股</a>
+                    <a href="category.html" class="tag"># 比特币ETF</a>
+                    <a href="category.html" class="tag"># 财报季</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('globalSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                window.location.href = 'search.html';
+            }
+        });
+    </script>
+</body>
+</html>

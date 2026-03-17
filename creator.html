@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创作者主页 - FIN-MEDIA</title>
+    <style>
+        :root { --bg-dark: #0B101E; --bg-card: #151B2E; --bg-hover: #1E293B; --text-main: #F8FAFC; --text-muted: #94A3B8; --accent-gold: #F59E0B; --border-color: #1E293B; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--accent-gold); }
+        ul { list-style: none; }
+
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-area h1 { color: var(--accent-gold); font-size: 24px; letter-spacing: 1px; }
+        .logo-area p { font-size: 12px; color: var(--text-muted); }
+        nav ul { display: flex; gap: 25px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
+        .btn-publish { background-color: var(--accent-gold); color: #000; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+
+        .container { max-width: 1400px; margin: 30px auto; padding: 0 5%; }
+        .profile-header { background: var(--bg-card); border-radius: 8px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        .profile-banner { height: 200px; background: linear-gradient(135deg, #1e3a8a, #0f172a); }
+        .profile-info { padding: 0 30px 30px; position: relative; display: flex; justify-content: space-between; align-items: flex-end; }
+        .profile-left { display: flex; gap: 20px; align-items: flex-end; margin-top: -50px; }
+        .profile-avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--bg-card); background: #cbd5e1; }
+        .profile-name h2 { font-size: 26px; display: flex; align-items: center; gap: 10px; }
+        .verified-badge { background: var(--accent-gold); color: #000; font-size: 12px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .profile-desc { color: var(--text-muted); margin-top: 5px; font-size: 14px; max-width: 500px; }
+        
+        .profile-data { display: flex; gap: 30px; text-align: center; }
+        .profile-data .num { font-size: 20px; font-weight: bold; color: var(--text-main); }
+        .profile-data .label { font-size: 12px; color: var(--text-muted); }
+        .btn-action { padding: 8px 20px; border-radius: 30px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); cursor: pointer; font-weight: bold; }
+        .btn-action.primary { background: var(--accent-gold); color: #000; border: none; }
+
+        .content-layout { display: flex; gap: 20px; }
+        .col-main { flex: 0 0 70%; }
+        .col-side { flex: 1; }
+        .card { background: var(--bg-card); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        
+        .feed-tabs { display: flex; gap: 30px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
+        .feed-tabs div { padding-bottom: 10px; font-size: 16px; color: var(--text-muted); cursor: pointer; margin-bottom: -1px; }
+        .feed-tabs div.active { color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold); font-weight: bold; }
+        .widget-title { color: var(--accent-gold); margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; font-size: 16px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <a href="index.html"><h1>FIN-MEDIA</h1></a>
+            <p>洞悉市场，发现价值</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="category.html">宏观经济</a></li>
+                <li><a href="stock.html">股市动态</a></li>
+                <li><a href="authors.html" style="color:var(--accent-gold);">专栏作者</a></li>
+                <li><a href="flash.html">7x24快讯</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <input type="text" class="search-box" placeholder="搜索代码、文章、作者..." onkeydown="if(event.keyCode==13) window.location.href='search.html'">
+            <a href="login.html" class="btn-publish" style="color:#000;">✎ 发布文章</a>
+            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%; cursor: pointer;"></div></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-banner"></div>
+            <div class="profile-info">
+                <div class="profile-left">
+                    <div class="profile-avatar"></div>
+                    <div class="profile-name">
+                        <h2>Alpha交易员 <span class="verified-badge">V认证游资</span></h2>
+                        <p class="profile-desc">专注短线情绪周期与龙头战法。不摸底，不恐高，只做主升浪。交易的核心是应对，而非预测。</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <div class="profile-data">
+                        <div><div class="num">85.4k</div><div class="label">关注者</div></div>
+                        <div><div class="num">128</div><div class="label">文章</div></div>
+                        <div><div class="num">25.6%</div><div class="label">实盘年化</div></div>
+                    </div>
+                    <a href="login.html"><button class="btn-action primary">+ 关注</button></a>
+                    <button class="btn-action">私信</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-layout">
+            <div class="col-main">
+                <div class="feed-tabs">
+                    <div class="active">最新文章</div>
+                    <div>交易随笔/动态</div>
+                    <div>专属问答区</div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 10px; font-size: 18px;"><a href="article.html">复盘笔记：今日高低切，资金为何猛攻新能源？</a></h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">今天盘面的核心特征就是“高低切换”。前期抱团的AI硬件端出现明显的分歧放量，而长期在底部的光伏、储能板块迎来了机构资金的暴力回补...</p>
+                    <div style="font-size: 12px; color: var(--text-muted);">2026-03-16 · 1.5w 阅读 · 342 评论</div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 10px; font-size: 18px;"><a href="article.html">龙头战法心法：如何判断情绪的冰点与高潮</a></h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">不要在退潮期去试错接飞刀，要在冰点确认后的右侧果断上车。这篇文章我会结合上周的几个典型连板妖股，拆解一下打板买入的确定性条件...</p>
+                    <div style="font-size: 12px; color: var(--text-muted);">2026-03-12 · 2.1w 阅读 · 518 评论</div>
+                </div>
+            </div>
+            <div class="col-side">
+                <div class="card">
+                    <h3 class="widget-title">👑 专属付费社群</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">加入我的核心圈子，获取每日早盘策略、盘中实时异动提示及月度实盘持仓分享。</p>
+                    <a href="login.html"><button class="btn-action primary" style="width: 100%; justify-content: center; background: linear-gradient(90deg, #F59E0B, #FCD34D);">￥199 / 月 立即订阅</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
