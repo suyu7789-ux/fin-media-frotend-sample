@@ -202,20 +202,28 @@
             <div class="widget">
                 <h3 class="widget-title">📊 市场情绪热力图</h3>
                 <div class="heatmap-grid">
-                    <div class="heat-block heat-up">半导体<br>+2.4%</div>
-                    <div class="heat-block heat-up-light">金融<br>+0.8%</div>
-                    <div class="heat-block heat-down">新能源<br>-1.5%</div>
-                    <div class="heat-block heat-down">医药<br>-0.6%</div>
+                    <div class="heat-block heat-up" onclick="window.location.href='category.html?sector=semiconductor'">
+                        半导体<br>+2.4%
+                    </div>
+                    <div class="heat-block heat-up-light" onclick="window.location.href='category.html?sector=finance'">
+                        金融<br>+0.8%
+                    </div>
+                    <div class="heat-block heat-down" onclick="window.location.href='category.html?sector=newenergy'">
+                        新能源<br>-1.5%
+                    </div>
+                    <div class="heat-block heat-down" onclick="window.location.href='category.html?sector=medicine'">
+                        医药<br>-0.6%
+                    </div>
                 </div>
             </div>
 
             <div class="widget">
                 <h3 class="widget-title">🏷️ 热门话题</h3>
                 <div class="tags-cloud">
-                    <a href="category.html" class="tag"># 降息预期</a>
-                    <a href="category.html" class="tag"># AI概念股</a>
-                    <a href="category.html" class="tag"># 比特币ETF</a>
-                    <a href="category.html" class="tag"># 财报季</a>
+                    <a href="search.html?keyword=降息预期" class="tag"># 降息预期</a>
+                    <a href="search.html?keyword=AI概念股" class="tag"># AI概念股</a>
+                    <a href="search.html?keyword=比特币ETF" class="tag"># 比特币ETF</a>
+                    <a href="search.html?keyword=财报季" class="tag"># 财报季</a>
                 </div>
             </div>
         </div>
