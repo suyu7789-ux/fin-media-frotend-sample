@@ -45,27 +45,9 @@
         .down { color: var(--down-green); font-weight: bold; }
     </style>
 </head>
+<script src="common.js"></script>
 <body>
-    <header>
-        <div class="logo-area">
-            <a href="index.html"><h1>FIN-MEDIA</h1></a>
-            <p>洞悉市场，发现价值</p>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="category.html">宏观经济</a></li>
-                <li><a href="stock.html" style="color:var(--accent-gold);">股市动态</a></li>
-                <li><a href="authors.html">专栏作者</a></li>
-                <li><a href="flash.html">7x24快讯</a></li>
-            </ul>
-        </nav>
-        <div class="header-actions">
-            <input type="text" class="search-box" placeholder="搜索代码、文章、作者..." onkeydown="if(event.keyCode==13) window.location.href='search.html'">
-            <a href="login.html" class="btn-publish" style="color:#000;">✎ 发布文章</a>
-            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%; cursor: pointer;"></div></a>
-        </div>
-    </header>
+    <header id="global-header"></header>
 
     <div class="category-header">
         <h1>股市动态 (Stock Market)</h1>

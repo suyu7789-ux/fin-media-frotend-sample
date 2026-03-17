@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>发布文章 - 创作者中心 - FIN-MEDIA</title>
+    <style>
+        :root { --bg-dark: #0B101E; --bg-card: #151B2E; --bg-hover: #1E293B; --text-main: #F8FAFC; --text-muted: #94A3B8; --accent-gold: #F59E0B; --border-color: #1E293B; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-area h1 { color: var(--accent-gold); font-size: 24px; }
+        nav ul { display: flex; gap: 25px; list-style: none; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .search-box { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); outline: none; }
+
+        .container { max-width: 1400px; margin: 30px auto; padding: 0 5%; display: flex; gap: 30px; }
+        .editor-main { flex: 1; background: var(--bg-card); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .editor-side { width: 350px; }
+        
+        .input-title { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color); color: var(--text-main); font-size: 28px; font-weight: bold; padding: 10px 0; margin-bottom: 20px; outline: none; }
+        .input-title:focus { border-bottom-color: var(--accent-gold); }
+        
+        .toolbar { background: var(--bg-dark); padding: 10px; border-radius: 4px; margin-bottom: 20px; display: flex; gap: 15px; border: 1px solid var(--border-color); }
+        .toolbar-btn { color: var(--text-muted); cursor: pointer; font-size: 14px; }
+        .toolbar-btn:hover { color: var(--accent-gold); }
+        
+        .editable-area { min-height: 500px; color: #E2E8F0; font-size: 17px; outline: none; }
+        
+        .side-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 20px; }
+        .side-title { color: var(--accent-gold); font-weight: bold; margin-bottom: 15px; font-size: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
+        .form-control { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 4px; color: #fff; padding: 8px; font-size: 13px; }
+        
+        .btn-pub { width: 100%; background: var(--accent-gold); color: #000; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-draft { width: 100%; background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area"><a href="index.html"><h1>FIN-MEDIA</h1></a></div>
+        <nav><ul><li><a href="index.html">首页</a></li><li><a href="creator-studio.html" style="color:var(--accent-gold);">创作者中心</a></li></ul></nav>
+        <div class="header-actions">
+            <input type="text" id="globalSearchInput" class="search-box" placeholder="搜索内容...">
+            <a href="user.html"><div style="width: 35px; height: 35px; background: #cbd5e1; border-radius: 50%;"></div></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="editor-main">
+            <input type="text" class="input-title" placeholder="输入文章标题...">
+            <div class="toolbar">
+                <span class="toolbar-btn"><b>B</b></span>
+                <span class="toolbar-btn"><i>I</i></span>
+                <span class="toolbar-btn">🔗 链接</span>
+                <span class="toolbar-btn">🖼️ 图片</span>
+                <span class="toolbar-btn">📊 插入行情图</span>
+            </div>
+            <div class="editable-area" contenteditable="true" placeholder="开始撰写您的金融分析..."></div>
+        </div>
+
+        <div class="editor-side">
+            <div class="side-card">
+                <div class="side-title">发布设置</div>
+                <div class="form-group">
+                    <label>选择分类</label>
+                    <select class="form-control"><option>宏观经济</option><option>股市动态</option><option>加密货币</option></select>
+                </div>
+                <div class="form-group">
+                    <label>关联标的 (代码/名称)</label>
+                    <input type="text" class="form-control" placeholder="如：2330, NVDA">
+                </div>
+                <div class="form-group">
+                    <label>文章标签</label>
+                    <input type="text" class="form-control" placeholder="用逗号分隔">
+                </div>
+            </div>
+
+            <div class="side-card">
+                <div class="side-title">商业化</div>
+                <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+                    <input type="checkbox" id="pay-read"> <label for="pay-read" style="margin:0;">开启付费阅读</label>
+                </div>
+                <div class="form-group">
+                    <label>价格 (积分/虚拟币)</label>
+                    <input type="number" class="form-control" value="0">
+                </div>
+            </div>
+
+            <button class="btn-pub">立即发布</button>
+            <button class="btn-draft">存为草稿</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('globalSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') window.location.href = 'search.html';
+        });
+    </script>
+</body>
+</html>
