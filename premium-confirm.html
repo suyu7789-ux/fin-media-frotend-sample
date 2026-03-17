@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>解锁深度研报 - FIN-MEDIA</title>
+    <style>
+        :root {
+            --bg-dark: #0B101E;
+            --bg-card: #151B2E;
+            --accent-gold: #F59E0B;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #fff;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .confirm-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            width: 450px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .premium-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .price-tag {
+            font-size: 32px;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .wallet-info {
+            background: var(--bg-dark);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-pay {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="confirm-card">
+        <div class="premium-icon">💎</div>
+        <h3>解锁深度内容</h3>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">您正在申请阅读《半导体行业Q2策略：寻找AI算力之外的珍珠》</p>
+        <div class="price-tag">50.00 <span style="font-size: 16px;">Fin-Coin</span></div>
+        <div class="wallet-info">当前可用余额：1,280.50 Fin-Coin</div>
+        <div class="btn-group">
+            <button class="btn btn-cancel" onclick="history.back()">取消阅读</button>
+            <button class="btn btn-pay" onclick="alert('解锁成功！'); location.href='article.html'">立即解锁</button>
+        </div>
+    </div>
+</body>
+
+</html>

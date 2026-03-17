@@ -33,6 +33,20 @@
         .article-summary { color: var(--text-muted); font-size: 15px; margin-bottom: 15px; }
     </style>
 <script src="common.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const sector = params.get('sector');
+        if (sector) {
+            // 模拟高亮逻辑
+            const tags = document.querySelectorAll('.filter-tags span');
+            tags.forEach(tag => tag.classList.remove('active'));
+
+            if (sector === 'semiconductor') tags[1].classList.add('active'); // 选中台股观察
+            if (sector === 'finance') tags[3].classList.add('active'); // 选中高股息(金融)
+        }
+    });
+</script>
 <body>
     <header id="global-header"></header>
 
